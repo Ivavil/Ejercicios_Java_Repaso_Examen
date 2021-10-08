@@ -56,26 +56,25 @@ public class Programa {
         System.out.println(usuarios);
 
 
-        int contador = 0;
-        long tiempos[] = new long[3];
+        List<Long> tiempos = new ArrayList<Long>();
         long media = 0;
         for (String nombre:
                 usuarios) {
             for(int i = 0; i< USUARIO.length; i++){
                 if(nombre.equals(USUARIO[i])){
-                    tiempos[contador] = FECHA[i];
-                    contador++;
+                    tiempos.add(FECHA[i]);
+
                 }
             }
 
-            tiempos[contador] = FECHA_ACTUAL;
-            for(int i = 0; i < tiempos.length - 1;i++){
-                media = tiempos[i + 1] - tiempos[i];
+            tiempos.add(FECHA_ACTUAL);
+            for(int i = 0; i < tiempos.size() - 1;i++){
+                media = tiempos.get(i + 1) - tiempos.get(i);
             }
 
-            media = media/tiempos.length;
+            media = media/tiempos.size();
             tiempo_medio.put(nombre, media);
-            contador = 0;
+            tiempos.clear();
         }
 
         System.out.println(tiempo_medio);
